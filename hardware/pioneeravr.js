@@ -479,7 +479,14 @@ function handleData(self, d) {
         	if (TRACE) {
             		console.log("AVR listening mode: " + listeningModes[mode]);
         	}
-		self.emit("listenMode", mode, listeningModes[mode]);
+		self.emit("listenOutput", output, listeningOutputs[output]);
+    	}
+    else if (data.startsWith("HO")) {       				// outputs
+        var output = data.substring(2);
+        if (TRACE) {
+              console.log("AVR outputs: " + listeningOutputs[output]);
+        }
+    self.emit("listenOutput", output, listeningOutputs[output]);    
     	}
     	else if (data.startsWith("FL")) {       				// display information
 		var display = hex2a(data.substring(4)).trim();

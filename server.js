@@ -56,6 +56,7 @@ var	Z2MUTE		= false;
 var	INPUT		= false;
 var	Z2INPUT		= false;
 var	MODE		= false;
+var	OUTPUT		= false;
 var	VOLUME		= false;
 var	Z2VOLUME	= false;
 var	WAIT		= false;
