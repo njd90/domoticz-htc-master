@@ -1,0 +1,97 @@
+// DOMOTICZ-HTC Example Configuration
+// rename to config.js after making your changes.
+// All Configuration options are made here, wont be overwritten on update.
+
+// BEGIN CONFIG
+var options = {
+	powermate       : false,                // Enable PowerMate Volume Knob
+	sharptv         : false,                // Enable SharpTV Sync & OSD
+	host            : 'localhost',          // MQTT Broker Host (Domoticz)
+	avrPort         : 23,                   // Serial Port (String) or TCP Port (Int) of Pioneer
+	avrHost         : "192.168.1.80",       // IP Address of Pioneer (if Int used for avrPort)
+	maxvol          : 161,                  // 0dB, issue telnet: 3SUD for hard enforcment.
+	defaultVolume   : 45,                   // Default Volume (%) on Input Change
+	tvPort          : "/dev/ttyUSB-TV",     // Serial Port for TV
+	idx             : [ ],                  // Init IDX Array
+	request         : false,                // Required for MQTT
+	status          : 'htc/connected',      // MQTT Status Path
+	syslog          : false,                // Log to Syslog
+	log             : false,                // Extra Debug Logging
+};
+
+// Domoticz Switches - NAME : IDX (false = Disabled)
+var switches = {
+	inputs          : 21,                   // Input Selector Switch (Required)
+	modes           : 22,                   // Mode Selector Switch
+	volume          : 25,                   // Volume Dimmer
+	zone2           : false,                // Zone2 Input Selector
+	z2volume        : false,                // Zone2 Volume Slider
+	zone3           : false,                // Zone3 Input Selector
+	z3volume        : false,                // Zone3 Volume Slider
+	zone4           : false,                // Zone4 Input Selector
+	tuner           : 24,                   // AM/FM Tune Selector
+	displayText     : 26,                   // Front Display Text
+	modeText        : 23,                   // Audio Mode Text
+	lights          : false,                // Lights to dim w/PowerMate
+	outputs      : 27,                   // HDMI Output Selector
+};
+
+// See your Pioneer IP & RS-232 Control Commands doc for Input and Audio Mode Numbers.
+
+// Domoticz Input Selector - LEVEL : [INPUT, NAME]
+var inputs = {
+	0               : [ 0, 'Power Off' ],
+	10              : [ 15, 'DVR/BDR' ],
+	20              : [ 04, 'Apple TV' ],
+	30              : [ 22, 'HDMI 4' ],
+	40              : [ 24, 'HDMI 6' ],
+	50              : [ 02, 'FM Tuner' ],
+};
+
+// Domoticz Output Selector - LEVEL : [OUTPUT, NAME]
+var outputs = {
+	10              : [ '1', 'HDMI 1 (TV)' ],
+	20              : [ '2', 'HDMI 2 (Videoproj)' ],
+	30              : [ '9', 'HDMI Cyclic' ],
+	40              : [ '0', 'All HDMI' ],
+};
+
+// Domoticz Audio Mode Selector - LEVEL : [MODE, NAME]
+var modes = {
+	10              : [ '0006', 'Auto Surround' ],
+	20              : [ '0151', 'Auto Level Control' ],
+	30              : [ '0007', 'Stream Direct' ],
+	40              : [ '0001', 'Stereo' ],
+	50              : [ '0012', 'ProLogic' ],
+	60              : [ '0014', 'ProLogic Music' ],
+	70              : [ '0112', 'Extended Stereo'],
+};
+
+// Domoticz Zone2/3/4 Input Selector - LEVEL : [INPUT, NAME]
+var zoneInputs = {
+	0               : [ 0, 'Power Off' ],
+	10              : [ 15, 'Nexus Player' ],
+	20              : [ 02, 'FM Tuner' ],
+	30              : [ 41, 'Native Pandora' ],
+	40              : [ 44, 'AirPlay' ],
+};
+
+// Domoticz Radio Tuner Selector - LEVEL : [FREQ, NAME]
+var radio = {
+	0               : [ 0, 'Power Off' ],
+	10              : [ '08780', '87.8 Radio Star' ],
+	20              : [ '09340', '93.4 RTL2' ],
+	30              : [ '09730', '97.3 SKYROCK' ],
+	40              : [ '10000', '100.0 FUN Radio' ],
+	50              : [ '10620', '106.2 NRJ' ],
+	60              : [ '10320', '103.2 RTL' ],
+}
+// END CONFIG
+
+exports.options = options
+exports.switches = switches
+exports.inputs = inputs
+exports.outputs = outputs
+exports.modes = modes
+exports.zoneInputs = zoneInputs
+exports.radio = radio
