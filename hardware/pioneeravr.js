@@ -293,7 +293,7 @@ Pioneer.prototype.queryaudioMode = function(mode) {
 	this.client.write("?L\r");
 };
 
-Pioneer.prototype.listeningOutput = function(output) {
+Pioneer.prototype.queryOutput = function(output) {
 	this.client.write(output + "HO\r");
 };
 
@@ -479,14 +479,14 @@ function handleData(self, d) {
         	if (TRACE) {
             		console.log("AVR listening mode: " + listeningModes[mode]);
         	}
-		self.emit("listenOutput", output, listeningOutputs[output]);
+		self.emit("HDMI Output", output, hdmiOutputs[output]);
     	}
     else if (data.startsWith("HO")) {       				// outputs
         var output = data.substring(2);
         if (TRACE) {
-              console.log("AVR outputs: " + listeningOutputs[output]);
+              console.log("AVR outputs: " + hdmiOutputs[output]);
         }
-    self.emit("listenOutput", output, listeningOutputs[output]);    
+    self.emit("HDMI Output", output, hdmiOutputs[output]);
     	}
     	else if (data.startsWith("FL")) {       				// display information
 		var display = hex2a(data.substring(4)).trim();
@@ -575,7 +575,7 @@ exports.Pioneer = Pioneer;
 exports.Inputs = Inputs;
 exports.Power = pow;
 exports.ListeningModes = listeningModes;
-exports.listeningOutputs = listeningOutputs;
+exports.hdmiOutputs = hdmiOutputs;
 
 var Inputs = {
 	dvd: "04",
@@ -772,7 +772,7 @@ var listeningModes = {
 	"0e01":"HDMI PASSTHROUGH",
 	"0f01":"MULTI CH IN"
 };
-var listeningOutputs = {
+var hdmiOutputs = {
   "HDMI_OUT_ALL": "0",
   "HDMI_OUT_1": "1",
   "HDMI_OUT_2": "2",
