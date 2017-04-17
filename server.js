@@ -127,7 +127,7 @@ domoticz.on('data', function(data) {
 		level = parseInt(data.svalue1)
 		if ((outputs[level]) && (outputs[level][0] !== OUTPUT) && (POWER)) {
 			if (TRACE) { console.log("DOMO: Output " + outputs[level][1]) }
-			receiver.listeningOutput(outputs[level][0])
+			receiver.queryOutput(outputs[level][0])
 			OUTPUT = outputs[level][0]
 		}
 	}
